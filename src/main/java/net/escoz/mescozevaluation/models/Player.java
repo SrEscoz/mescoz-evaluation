@@ -3,6 +3,7 @@ package net.escoz.mescozevaluation.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,18 +21,20 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
+	@NotBlank(message = "El nombre no ha de estar vacío")
 	@Column(name = "nombre")
 	private String name;
 
-	@NotBlank
+	@NotBlank(message = "Los apellidos no han de estar vacíos")
 	@Column(name = "apellidos")
 	private String surname;
 
+	@NotNull(message = "Incluye la edad")
 	@Column(name = "edad", nullable = false)
 	private Integer age;
 
-	@Email
+	@NotBlank(message = "El mail no ha de estar vacío")
+	@Email(message = "El email no cumple el formato")
 	@Column(unique = true)
 	private String email;
 

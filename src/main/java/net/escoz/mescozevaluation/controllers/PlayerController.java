@@ -1,10 +1,13 @@
 package net.escoz.mescozevaluation.controllers;
 
 import lombok.AllArgsConstructor;
+import net.escoz.mescozevaluation.controllers.dtos.player.PlayerInDTO;
 import net.escoz.mescozevaluation.controllers.dtos.player.PlayerMinOutDTO;
 import net.escoz.mescozevaluation.controllers.dtos.player.PlayerOutDTO;
 import net.escoz.mescozevaluation.mappers.PlayerMapper;
+import net.escoz.mescozevaluation.models.Player;
 import net.escoz.mescozevaluation.services.PlayerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +33,15 @@ public class PlayerController {
 		return ResponseEntity
 				.ok()
 				.body(playerMapper.toOutDTO(playerService.getPlayer(id)));
+	}
+
+	@PostMapping
+	public ResponseEntity<PlayerOutDTO> postPlayer(@RequestBody PlayerInDTO playerRequest) {
+		Player player = playerMapper.toEntity(playerRequest);
+
+		return ResponseEntity
+				.status(HttpStatus.CREATED)
+				.body(playerMapper.toOutDTO(playerService.addPlayer(player)));
 	}
 
 	@DeleteMapping("/{id}")

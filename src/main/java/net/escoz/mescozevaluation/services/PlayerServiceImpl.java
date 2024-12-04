@@ -1,7 +1,9 @@
 package net.escoz.mescozevaluation.services;
 
+import jakarta.validation.ConstraintViolationException;
 import lombok.AllArgsConstructor;
 import net.escoz.mescozevaluation.exceptions.NotFoundException;
+import net.escoz.mescozevaluation.exceptions.UnprocessableEntityException;
 import net.escoz.mescozevaluation.models.Player;
 import net.escoz.mescozevaluation.repositories.PlayerRepository;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,17 @@ public class PlayerServiceImpl implements PlayerService {
 	@Override
 	public Player getPlayer(long id) {
 		return playerRepository.findById(id)
-				.orElseThrow(() -> new NotFoundException("Jugador con id: " + id + " no encontrado"));
+				.orElseThrow(() -> new NotFoundException("Jugador con ID: " + id + " no encontrado"));
+	}
+
+	@Override
+	public Player addPlayer(Player player) {
+		try {
+			return playerRepository.save(player);
+
+		} catch (ConstraintViolationException e) {
+			throw new UnprocessableEntityException(e.getConstraintViolations().iterator().next().getMessage());
+		}
 	}
 
 	@Override
