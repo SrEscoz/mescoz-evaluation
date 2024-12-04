@@ -44,6 +44,13 @@ public class PlayerController {
 				.body(playerMapper.toOutDTO(playerService.addPlayer(player)));
 	}
 
+	@PutMapping("/{id}")
+	public ResponseEntity<PlayerOutDTO> putPlayer(@PathVariable long id, @RequestBody PlayerInDTO playerRequest) {
+		return ResponseEntity
+				.ok()
+				.body(playerMapper.toOutDTO(playerService.updatePlayer(playerRequest, id)));
+	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<BasicResponse> deletePlayerById(@PathVariable long id) {
 		playerService.deletePlayer(id);
