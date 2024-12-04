@@ -10,5 +10,7 @@ public interface TeamService {
 
 	Team getTeam(long id);
 
+	Team addTeam(Team team);
+
 	void deleteTeam(long id);
 }
