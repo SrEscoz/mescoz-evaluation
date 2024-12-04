@@ -9,6 +9,7 @@ import net.escoz.mescozevaluation.models.Team;
 import net.escoz.mescozevaluation.services.PlayerService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -26,6 +27,10 @@ public interface TeamMapper {
 
 	@Mapping(target = "team", ignore = true)
 	PlayerMinOutDTO playerToPlayerMinOutDTO(Player player);
+
+	@Mapping(target = "id", ignore = true)
+	@Mapping(target = "players", ignore = true)
+	Team updateTeam(@MappingTarget Team team, TeamInDTO teamInDTO);
 
 	default String mapPlayerToString(Player player) {
 		if (player == null) return null;

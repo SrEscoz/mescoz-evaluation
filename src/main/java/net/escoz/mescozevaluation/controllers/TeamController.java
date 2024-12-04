@@ -10,6 +10,7 @@ import net.escoz.mescozevaluation.exceptions.UnprocessableEntityException;
 import net.escoz.mescozevaluation.mappers.TeamMapper;
 import net.escoz.mescozevaluation.models.Team;
 import net.escoz.mescozevaluation.services.TeamService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +50,22 @@ public class TeamController {
 		Team team = teamMapper.toEntity(teamRequest);
 
 		return ResponseEntity
-				.ok()
+				.status(HttpStatus.CREATED)
 				.body(teamMapper.toDTO(teamService.addTeam(team)));
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<TeamOutDTO> putTeam(@PathVariable long id,
+	                                          @Valid @RequestBody TeamInDTO teamRequest,
+	                                          BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			throw new UnprocessableEntityException(bindingResult.getAllErrors().get(0).getDefaultMessage());
+		}
+
+		return ResponseEntity
+				.ok()
+				.body(teamMapper.toDTO(teamService.updateTeam(teamRequest, id)));
 	}
 
 	@DeleteMapping("/{id}")
