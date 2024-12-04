@@ -21,11 +21,11 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank(message = "El nombre no ha de estar vacío")
+	@NotBlank
 	@Column(name = "nombre")
 	private String name;
 
-	@NotBlank(message = "Los apellidos no han de estar vacíos")
+	@NotBlank
 	@Column(name = "apellidos")
 	private String surname;
 
