@@ -15,9 +15,11 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {TeamService.class})
 public interface PlayerMapper {
 
-	PlayerMinOutDTO toMinOutDTO(Player player);
+	PlayerMinOutDTO toMinDTO(Player player);
 
-	PlayerOutDTO toOutDTO(Player player);
+	List<PlayerMinOutDTO> toMinDTOs(List<Player> players);
+
+	PlayerOutDTO toDTO(Player player);
 
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "team", source = "teamId")
@@ -26,8 +28,6 @@ public interface PlayerMapper {
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "team", source = "teamId")
 	Player updateEntity(@MappingTarget Player player, PlayerInDTO playerInDTO);
-
-	List<PlayerMinOutDTO> toMinOutDTOs(List<Player> players);
 
 	default String mapTeamToString(Team team) {
 		return team.getName();

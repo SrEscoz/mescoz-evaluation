@@ -2,6 +2,7 @@ package net.escoz.mescozevaluation.controllers;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import net.escoz.mescozevaluation.controllers.dtos.BasicResponse;
 import net.escoz.mescozevaluation.controllers.dtos.player.PlayerInDTO;
 import net.escoz.mescozevaluation.controllers.dtos.player.PlayerMinOutDTO;
 import net.escoz.mescozevaluation.controllers.dtos.player.PlayerOutDTO;
@@ -28,14 +29,14 @@ public class PlayerController {
 	public ResponseEntity<List<PlayerMinOutDTO>> getAllPlayers() {
 		return ResponseEntity
 				.ok()
-				.body(playerMapper.toMinOutDTOs(playerService.getPlayers()));
+				.body(playerMapper.toMinDTOs(playerService.getPlayers()));
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<PlayerOutDTO> getPlayerById(@PathVariable long id) {
 		return ResponseEntity
 				.ok()
-				.body(playerMapper.toOutDTO(playerService.getPlayer(id)));
+				.body(playerMapper.toDTO(playerService.getPlayer(id)));
 	}
 
 	@PostMapping
@@ -50,7 +51,7 @@ public class PlayerController {
 
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
-				.body(playerMapper.toOutDTO(playerService.addPlayer(player)));
+				.body(playerMapper.toDTO(playerService.addPlayer(player)));
 	}
 
 	@PutMapping("/{id}")
@@ -64,7 +65,7 @@ public class PlayerController {
 
 		return ResponseEntity
 				.ok()
-				.body(playerMapper.toOutDTO(playerService.updatePlayer(playerRequest, id)));
+				.body(playerMapper.toDTO(playerService.updatePlayer(playerRequest, id)));
 	}
 
 	@DeleteMapping("/{id}")
