@@ -1,6 +1,5 @@
 package net.escoz.mescozevaluation.controllers.dtos.team;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
