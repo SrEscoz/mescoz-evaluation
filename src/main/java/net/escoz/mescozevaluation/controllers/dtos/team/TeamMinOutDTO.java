@@ -4,16 +4,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.escoz.mescozevaluation.controllers.dtos.player.PlayerMinOutDTO;
 
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeamOutDTO {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class TeamMinOutDTO {
 
 	private long id;
 	private String name;
-	private List<PlayerMinOutDTO> players;
+	private List<String> players;
 }
