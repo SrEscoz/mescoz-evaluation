@@ -1,15 +1,13 @@
 package net.escoz.mescozevaluation.controllers;
 
 import lombok.AllArgsConstructor;
+import net.escoz.mescozevaluation.controllers.dtos.BasicResponse;
 import net.escoz.mescozevaluation.controllers.dtos.team.TeamMinOutDTO;
 import net.escoz.mescozevaluation.controllers.dtos.team.TeamOutDTO;
 import net.escoz.mescozevaluation.mappers.TeamMapper;
 import net.escoz.mescozevaluation.services.TeamService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +31,14 @@ public class TeamController {
 		return ResponseEntity
 				.ok()
 				.body(teamMapper.toDTO(teamService.getTeam(id)));
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<BasicResponse> deleteTeamById(@PathVariable long id) {
+		teamService.deleteTeam(id);
+
+		return ResponseEntity
+				.ok()
+				.body(new BasicResponse("Equipo con ID: " + id + " eliminado"));
 	}
 }

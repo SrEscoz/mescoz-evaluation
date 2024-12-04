@@ -24,4 +24,13 @@ public class TeamServiceImpl implements TeamService {
 		return teamRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Equipo con ID: " + id + " no encontrado"));
 	}
+
+	@Override
+	public void deleteTeam(long id) {
+		Team team = getTeam(id);
+		team.getPlayers()
+				.forEach(player -> player.setTeam(null));
+
+		teamRepository.delete(team);
+	}
 }

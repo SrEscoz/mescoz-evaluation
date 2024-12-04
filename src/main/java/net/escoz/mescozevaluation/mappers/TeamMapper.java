@@ -23,6 +23,8 @@ public interface TeamMapper {
 	PlayerMinOutDTO playerToPlayerMinOutDTO(Player player);
 
 	default String mapPlayerToString(Player player) {
+		if (player == null) return null;
+
 		return player.getName();
 	}
 }

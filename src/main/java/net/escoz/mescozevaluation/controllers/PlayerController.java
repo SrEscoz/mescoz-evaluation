@@ -74,6 +74,6 @@ public class PlayerController {
 
 		return ResponseEntity
 				.ok()
-				.body(new BasicResponse("Jugador con id: " + id + " eliminado"));
+				.body(new BasicResponse("Jugador con ID: " + id + " eliminado"));
 	}
 }

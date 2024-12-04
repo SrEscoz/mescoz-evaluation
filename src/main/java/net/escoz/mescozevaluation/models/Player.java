@@ -29,12 +29,12 @@ public class Player {
 	@Column(name = "apellidos")
 	private String surname;
 
-	@NotNull(message = "Incluye la edad")
+	@NotNull
 	@Column(name = "edad", nullable = false)
 	private Integer age;
 
-	@NotBlank(message = "El mail no ha de estar vacío")
-	@Email(message = "El email no cumple el formato")
+	@NotBlank
+	@Email
 	@Column(unique = true)
 	private String email;
 

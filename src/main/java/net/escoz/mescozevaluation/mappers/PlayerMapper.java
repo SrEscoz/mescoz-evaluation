@@ -30,6 +30,8 @@ public interface PlayerMapper {
 	Player updateEntity(@MappingTarget Player player, PlayerInDTO playerInDTO);
 
 	default String mapTeamToString(Team team) {
+		if (team == null) return null;
+
 		return team.getName();
 	}
 }

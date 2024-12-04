@@ -9,4 +9,6 @@ public interface TeamService {
 	List<Team> getTeams();
 
 	Team getTeam(long id);
+
+	void deleteTeam(long id);
 }
