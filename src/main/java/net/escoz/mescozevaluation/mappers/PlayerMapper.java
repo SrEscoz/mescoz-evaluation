@@ -1,7 +1,7 @@
 package net.escoz.mescozevaluation.mappers;
 
-import net.escoz.mescozevaluation.controllers.dtos.PlayerMinOutDTO;
-import net.escoz.mescozevaluation.controllers.dtos.PlayerOutDTO;
+import net.escoz.mescozevaluation.controllers.dtos.player.PlayerMinOutDTO;
+import net.escoz.mescozevaluation.controllers.dtos.player.PlayerOutDTO;
 import net.escoz.mescozevaluation.models.Player;
 import net.escoz.mescozevaluation.models.Team;
 import org.mapstruct.Mapper;

@@ -1,4 +1,4 @@
-package net.escoz.mescozevaluation.controllers.dtos;
+package net.escoz.mescozevaluation.controllers.dtos.player;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

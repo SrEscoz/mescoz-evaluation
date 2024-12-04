@@ -1,6 +1,7 @@
 package net.escoz.mescozevaluation.services;
 
 import lombok.AllArgsConstructor;
+import net.escoz.mescozevaluation.exceptions.NotFoundException;
 import net.escoz.mescozevaluation.models.Player;
 import net.escoz.mescozevaluation.repositories.PlayerRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,6 @@ public class PlayerServiceImpl implements PlayerService {
 	@Override
 	public Player getPlayer(long id) {
 		return playerRepository.findById(id)
-				.orElse(null);
+				.orElseThrow(() -> new NotFoundException("Jugador con id: " + id + " no encontrado"));
 	}
 }

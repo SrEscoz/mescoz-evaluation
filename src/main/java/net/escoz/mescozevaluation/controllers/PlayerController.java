@@ -1,8 +1,8 @@
 package net.escoz.mescozevaluation.controllers;
 
 import lombok.AllArgsConstructor;
-import net.escoz.mescozevaluation.controllers.dtos.PlayerMinOutDTO;
-import net.escoz.mescozevaluation.controllers.dtos.PlayerOutDTO;
+import net.escoz.mescozevaluation.controllers.dtos.player.PlayerMinOutDTO;
+import net.escoz.mescozevaluation.controllers.dtos.player.PlayerOutDTO;
 import net.escoz.mescozevaluation.mappers.PlayerMapper;
 import net.escoz.mescozevaluation.services.PlayerService;
 import org.springframework.http.ResponseEntity;
