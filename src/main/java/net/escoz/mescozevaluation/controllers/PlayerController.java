@@ -6,10 +6,7 @@ import net.escoz.mescozevaluation.controllers.dtos.player.PlayerOutDTO;
 import net.escoz.mescozevaluation.mappers.PlayerMapper;
 import net.escoz.mescozevaluation.services.PlayerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,14 @@ public class PlayerController {
 		return ResponseEntity
 				.ok()
 				.body(playerMapper.toOutDTO(playerService.getPlayer(id)));
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<BasicResponse> deletePlayerById(@PathVariable long id) {
+		playerService.deletePlayer(id);
+
+		return ResponseEntity
+				.ok()
+				.body(new BasicResponse("Jugador con id: " + id + " eliminado"));
 	}
 }

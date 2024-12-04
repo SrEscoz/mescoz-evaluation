@@ -24,4 +24,9 @@ public class PlayerServiceImpl implements PlayerService {
 		return playerRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Jugador con id: " + id + " no encontrado"));
 	}
+
+	@Override
+	public void deletePlayer(long id) {
+		playerRepository.delete(getPlayer(id));
+	}
 }
